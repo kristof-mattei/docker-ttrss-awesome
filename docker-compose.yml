@@ -1,0 +1,11 @@
+ttrss:
+    build: php
+server:
+    build: nginx
+    links: 
+        - ttrss
+    ports: 
+        - "80:80"
+        - "443:443"
+    volumes_from:
+        - ttrss
