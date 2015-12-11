@@ -3,16 +3,14 @@ FROM php:5-fpm
 # install GIT
 RUN DEBIAN_FRONTEND=noninteractive \
 	apt-get update && \
-	apt-get install -y git && \
+	apt-get install -y git --no-install-recommends && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# RUN git clone https://tt-rss.org/gitlab/fox/tt-rss.git /var/www/html
-
-COPY index.php /var/www/html/
+# Pull TTRSS
+RUN git clone https://tt-rss.org/gitlab/fox/tt-rss.git /var/www/html
 
 # TODO
-# Pull TTRSS
 # Patch TTRSS
 
 RUN echo "" >> /usr/local/etc/php-fpm.conf && \
